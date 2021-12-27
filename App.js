@@ -34,7 +34,7 @@ export default function App() {
     (data) => {
       const find = task.filter(r => r.key !== data.key);
       setTask(find);
-      
+
     }
   );
 
@@ -71,16 +71,15 @@ export default function App() {
               placeholderTextColor="#747474"
               autoCorrect={false}
               placeholder="O que precisa fazer hoje"
-              style={styles.input}
+              style={styles.handleAddText}
               value={input}
               onChangeText={(text) => setInput(text)}
 
-              placeholder='O que precisa fazer hoje?'
-              style={styles.input}
             />
 
             <TouchableOpacity style={styles.handleAdd} onPress={handleAdd}>
               <Text style={styles.handleAddText}>Cadastrar</Text>
+
             </TouchableOpacity>
 
           </Animatable.View>
@@ -151,12 +150,13 @@ const styles = StyleSheet.create({
   },
   modalBody: {
     backgroundColor: '#AAA',
-    textAlign: 'center'
+    textAlign: 'center',
+    backgroundColor: '#FFF',
+
   },
 
-
   handleAdd: {
-    backgroundColor: '#FFF',
+    backgroundColor: '#2FF',
     marginTop: 10,
     alignItems: 'center',
     justifyContent: 'center',
@@ -167,6 +167,14 @@ const styles = StyleSheet.create({
   },
   handleAddText: {
     fontSize: 20,
+    borderRadius: 10,
+    borderWidth: 1,
+    textAlign: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 10,
+    marginBottom: 25,
+    height: 80,
   }
 
 

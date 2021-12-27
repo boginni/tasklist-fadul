@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { View, Text, StyleSheet, SafeAreaView, StatusBar, TouchableOpacity, FlatList, Modal, TextInput } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import TaskList from './src/components/TaskList';
@@ -10,7 +10,7 @@ const AnimatableBtn = Animatable.createAnimatableComponent(TouchableOpacity);
 
 
 export default function App() {
-  const [task, setTask] = useState([  ]);
+  const [task, setTask] = useState([]);
 
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState('');
@@ -29,9 +29,15 @@ export default function App() {
 
   }
 
-  function handleDelete(){
-    alert('OIII')
-  }
+
+  const handleDelete = useCallback(
+    (data) => {
+      const find = task.filter(r => r.key !== data.key);
+      setTask(find);
+      
+    }
+  );
+
 
   return (
     <SafeAreaView style={styles.container}>
@@ -46,7 +52,7 @@ export default function App() {
         showsHorizontalScrollIndicator={false} // desativa barra de scroll
         data={task} // contem todos itens da lista
         keyExtractor={(item) => String(item.key)} // cada item tem uma chave
-        renderItem={({ item }) => <TaskList data={item} handleDelete={handleDelete}/>} // rederiza (mostra) os itens
+        renderItem={({ item }) => <TaskList data={item} handleDelete={handleDelete} />} // rederiza (mostra) os itens
       />
 
       <Modal animationType="slide" transparent={false} visible={open}>

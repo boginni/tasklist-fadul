@@ -29,6 +29,10 @@ export default function App() {
 
   }
 
+  function handleDelete(){
+    alert('OIII')
+  }
+
   return (
     <SafeAreaView style={styles.container}>
 
@@ -42,22 +46,17 @@ export default function App() {
         showsHorizontalScrollIndicator={false} // desativa barra de scroll
         data={task} // contem todos itens da lista
         keyExtractor={(item) => String(item.key)} // cada item tem uma chave
-        renderItem={({ item }) => <TaskList data={item} />} // rederiza (mostra) os itens
+        renderItem={({ item }) => <TaskList data={item} handleDelete={handleDelete}/>} // rederiza (mostra) os itens
       />
 
       <Modal animationType="slide" transparent={false} visible={open}>
         <SafeAreaView>
-
-
           <Animatable.View style={styles.modalBody} animation="fadeInUp" useNativeDriver >
 
-
             <View style={styles.modalHeader}>
-
               <TouchableOpacity onPress={() => setOpen(false)}>
-                <Ionicons style={{ marginLeft: 5, marginRight: 5 }} name="md-arrow-back"></Ionicons>
+                <Ionicons size={35} style={{ marginLeft: 5, marginRight: 5 }} name="md-arrow-back"></Ionicons>
               </TouchableOpacity>
-
               <Text style={styles.modalTitle}>Nova tarefa</Text>
             </View>
 
@@ -78,9 +77,6 @@ export default function App() {
               <Text style={styles.handleAddText}>Cadastrar</Text>
             </TouchableOpacity>
 
-
-
-
           </Animatable.View>
 
         </SafeAreaView>
@@ -96,13 +92,7 @@ export default function App() {
         <Ionicons name="ios-add" size={35} color="#FFF" />
       </AnimatableBtn>
 
-
-
-
-
     </SafeAreaView>
-
-
   );
 }
 const styles = StyleSheet.create({
@@ -136,6 +126,8 @@ const styles = StyleSheet.create({
       height: 3,
     }
   },
+
+
   modal: {
     flex: 1,
     backgroundColor: '#171d31',
@@ -155,6 +147,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#AAA',
     textAlign: 'center'
   },
+
+
   handleAdd: {
     backgroundColor: '#FFF',
     marginTop: 10,
